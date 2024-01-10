@@ -3,12 +3,11 @@ import { useState, useRef, useEffect } from 'react';
 import './style.css'
 
 import useNetwork from './useNetwork';
-
 import Header from "./components/header";
 import Content from './components/content';
 import Suggestions from './components/suggestions';
 
-import {getFilteredSuggestion} from './util';
+import { getFilteredSuggestion } from './util';
 
 const MAX_WAIT_TIME = 5;
 
@@ -30,10 +29,10 @@ function Autocomplete() {
         }
     }, [timer])
 
-    function handleLanguageChange(e){
+    function handleLanguageChange(e) {
         const value = e?.target?.value;
         setLanguage(value);
-    } 
+    }
 
     function handleKeyPress(e) {
         const value = e?.target?.value;
@@ -44,7 +43,7 @@ function Autocomplete() {
         }
     }
 
-    function handleSuggestionSelect({id, value}) {
+    function handleSuggestionSelect({ id, value }) {
         const oldLang = [...userLang];
         oldLang.push({ id, value });
         setUserLang(oldLang);
@@ -55,7 +54,7 @@ function Autocomplete() {
         }, 1000);
     }
 
-    const filteredSuggestion = getFilteredSuggestion({data, language})
+    const filteredSuggestion = getFilteredSuggestion({ data, language })
 
     if (isError) {
         return <div>
@@ -76,17 +75,22 @@ function Autocomplete() {
         <div className="autocomplete">
             <Header
                 language={language}
-                onLanguageChange={handleLanguageChange} 
+                onLanguageChange={handleLanguageChange}
                 onKeypress={handleKeyPress}
                 time={timer}
                 enableTyping={!enableTyping}
             />
-            {!!filteredSuggestion.length && <Suggestions suggestions={filteredSuggestion} onSuggestionSelect={ handleSuggestionSelect } />} 
+            {!!filteredSuggestion.length && <Suggestions suggestions={filteredSuggestion} onSuggestionSelect={handleSuggestionSelect} />}
             {/* {!!language.length && <Content languages={userLang}/>} */}
-            <Content languages={userLang}/>
+            <Content languages={userLang} />
         </div>
         // to get boolean value we are using !!
     )
 }
 
 export default Autocomplete;
+
+
+//! Coupling(dependecy, compA ki dependency compB se bhut kam related ho) and cohesion(ek component kisi or component ke sath mil kar kitne ache se work kar rha hai)
+//? Software development me hame coupling ko reducen and cohesion ko increase karna hota hai,
+// Exp - like as we type on input box we get suggestions and then other side timer works.

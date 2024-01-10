@@ -1,6 +1,6 @@
-// import Autocomplete from "./autocomplete"
+import Autocomplete from "./autocomplete"
 
-import RenderProps from "./DesignPattern/RenderProps"
+// import RenderProps from "./DesignPattern/RenderProps"
 
 // import ContainerPresentation from "./DesignPattern/ContainerPresentation"
 
@@ -8,11 +8,11 @@ import RenderProps from "./DesignPattern/RenderProps"
 const App = () => {
   return (
     <>
-      {/* <Autocomplete/> */}
+      <Autocomplete />
 
       {/* Design Pattern */}
       {/* <ContainerPresentation/> */}
-      <RenderProps/>
+      {/* <RenderProps/> */}
     </>
   )
 }
